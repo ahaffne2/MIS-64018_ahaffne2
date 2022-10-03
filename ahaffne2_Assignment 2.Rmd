@@ -1,0 +1,84 @@
+---
+title: "ahaffne2_Assigntment 2"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+#Plant 1
+
+  420 X1 + 360 X2 + 300 X3p subject to
+  X1 + X2 + X3 <= 750 
+  X1 <= 900
+  X2 <= 1200
+  X3p <= 900
+  20 X1 + 15 X2 + 12 X3 <= 13,000
+  
+```{r}
+library(lpSolveAPI)
+library(lpSolve)
+  
+f.obj <- c(420, 360, 300)
+f.con <- matrix (c(1, 1, 1, 1, 0, 0, 0, 1,0, 0, 0, 1, 20, 15, 12), nrow = 5, byrow = TRUE)
+f.dir <- c("<=", "<=","<=", "<=" , "<=")
+f.rhs <- c(750, 900, 1200, 750, 13000 )
+f.bounds <- (lower = 0)
+
+
+lp("max", f.obj, f.con, f.dir, f.rhs)
+```
+```{r}
+lp("max", f.obj, f.con, f.dir, f.rhs)$solution
+```
+#Plant 2
+
+  420 X1 + 360 X2 + 300 X3 subject to
+  X1 + X2 + X3 <= 900 
+  X1 <= 900
+  X2 <= 1200
+  X3 <= 750
+  20 X1 + 15 X2 + 12 X3 <= 12,000
+
+```{r}
+f.obj <- c(420, 360, 300)
+f.con <- matrix (c(1, 1, 1, 1, 0, 0, 0, 1,0, 0, 0, 1, 20, 15, 12), nrow = 5, byrow = TRUE)
+f.dir <- c("<=", "<=","<=", "<=" , "<=")
+f.rhs <- c(900, 900, 1200, 750, 12000 )
+f.bounds <- (lower = 0)
+
+
+lp("max", f.obj, f.con, f.dir, f.rhs)
+```
+
+```{r}
+lp("max", f.obj, f.con, f.dir, f.rhs)$solution
+
+```
+#Plant 3
+
+420 X1 + 360 X2 + 300 X3 subject to
+X1 + X2 + X3 <= 450
+X1 <= 900
+X2 <= 1200
+X3 <= 750
+20 X1 + 15 X2 + 12 X3 <= 5000
+
+```{r}
+
+f.obj <- c(420, 360, 300)
+f.con <- matrix (c(1, 1, 1, 1, 0, 0, 0, 1,0, 0, 0, 1, 20, 15, 12), nrow = 5, byrow = TRUE)
+f.dir <- c("<=", "<=","<=", "<=" , "<=")
+f.rhs <- c(450, 900, 1200, 750, 5000 )
+f.bounds <- (lower = 0)
+
+
+lp("max", f.obj, f.con, f.dir, f.rhs)
+```
+
+
+
+```{r}
+lp("max", f.obj, f.con, f.dir, f.rhs)$solution
+```
+
+
