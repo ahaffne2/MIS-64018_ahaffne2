@@ -1,0 +1,99 @@
+---
+title: "Assignment 8 RMD"
+output: word_document
+---
+
+```{r}
+library(Benchmarking)
+library(lpSolveAPI)
+
+x <- matrix(c(150, 400, 320, 520, 350, 320,0.2, 0.7, 1.2, 2.0, 1.2, 0.7),ncol = 2)
+y <- matrix(c(14000,14000, 42000, 28000, 19000, 14000, 3500, 21000, 10500, 42000, 25000, 15000),ncol = 2)
+colnames(y) <- c("Reimbursed Patient Days","Privately Paid Patient Days")
+colnames(x) <- c("Staff Hours Per Day", "Supplies Per Day")
+x
+```
+```{r}
+y
+```
+
+```{r cars}
+f <- dea(x,y, RTS = "fdh")
+f
+```
+```{r}
+peers(f)
+```
+
+```{r}
+lambda(f)
+```
+
+```{r}
+v<- dea(x,y, RTS = "vrs")
+v
+```
+```{r}
+peers(v)
+```
+
+```{r}
+lambda(v)
+```
+```{r}
+d <- dea(x,y, RTS = "drs")
+d
+```
+```{r}
+peers(d)
+```
+
+```{r}
+lambda(d)
+```
+```{r}
+i <- dea(x,y, RTS = "irs")
+i
+```
+
+```{r}
+peers(i)
+```
+```{r}
+lambda(i)
+```
+```{r}
+a <- dea(x,y, RTS = "add")
+a
+```
+
+```{r}
+peers(a)
+```
+```{r}
+lambda(a)
+```
+```{r}
+e <- dea(x,y,RTS = "crs")
+e
+```
+
+```{r}
+peers(e)
+```
+```{r}
+lambda(e)
+```
+
+```{r}
+tab <- matrix(c( 1,'150' , 0.2,14000, 3500,1,1,1,1,1,1,2,400, 0.7, 14000, 21000, 1,1,1,1,1,1,3,320,1.2,42000,10500,1,1,1,1,1,1,4,520,2,28000,42000,1,1,1,1,1,1,5,350,1.2,19000,25000,1,1,0.9775,1,1,0.9775,6,320,0.7,14000,15000,1,0.8963,0.8675, 0.8963,1,0.8675), ncol=11, byrow=TRUE)
+colnames(tab) <- c('Facility','Input 1','Input 2', 'Output 1','Ouput 2', 'FDH', 'VRS', 'DRS','IRS','FRH', 'CRS')
+rownames(tab) <- c('1','2','3','4','5','6')
+tab <- as.table(tab)
+tab
+```
+#Several of the facilities are operating efficiently using the models as shown. Although 5 seems to have varying efficiencies when using the DRS and CRS method. Facility 6 is only efficient in two assumptions used.  Under the FDH and FRH Assumptions all the facilities are efficient. 
+
+#https://github.com/ahaffne2/MIS-64018_ahaffne2.git
+
+
