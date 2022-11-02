@@ -1,0 +1,57 @@
+
+---
+title: "Goal Programming"
+output:
+  html_document:
+    df_print: paged
+  html_notebook:
+    highlight: textmate
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+***
+Question 1
+P= 20x1 +15x2 + 25x3
+6x1 +4x2 +5x3 + y1p - y2m = 50
+8x1 +7x2 +5x3 -y2p -y2m =75 
+
+
+Question 2
+Z= 20x1 +15x2 +25x3 - 6y1m - 6y1p - 3y2m
+
+Question 3
+Max 20x1 +15x2 +25x3 -6y1p -6y1m -3y2m
+subject to
+6x1 + 4x2 + 5x3 - y1p - y1m = 50
+8x1 + 7x2 + 5x3 -y2p -y2m =75 
+x1, x2, x3, y1m, y1p, y2p, y2m >= 0 
+
+Question 4
+
+```{r}
+library(lpSolveAPI)
+gp <- read.lp("/Users/alexhaffner/Desktop/assignment_9.lp")
+gp
+```
+## Solve
+```{r}
+solve(gp)
+```
+
+```{r}
+get.objective(gp)
+```
+
+```{r}
+get.variables(gp)
+```
+
+Applying the simplex method to this formulation yields an optimal solution of  x1 = 0, x2 = 0, x3 = 15, y1p = 225, y1m = 0 and y2p =0. 
+***
+
+
+```
