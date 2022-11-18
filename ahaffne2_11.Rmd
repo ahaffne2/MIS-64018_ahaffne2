@@ -1,0 +1,41 @@
+---
+title: "ahaffne2_11.ext"
+output: word_document
+---
+
+
+```{r}
+library(lpSolve)
+library(lpSolveAPI)
+
+
+x <- read.lp("/Users/alexhaffner/Desktop/11.lp")
+x
+```
+
+
+```{r}
+solve(x)
+```
+```{r}
+get.objective(x)
+```
+
+The total cost of the minimal wage expense is $25,675. 
+
+```{r}
+get.variables(x)
+```
+
+```{r}
+tab <- matrix(c(0,4,5,0,8,1,0,0,0,5,0,8,1,13,2,0,0,0,8,1,13,2,4,0,0,8,1,13,2,4,5,0,0,1,13,2,3,4,0,0,0,13,2,4,5,0,8,0,0), ncol=7,byrow=TRUE)
+colnames(tab)<- c('Sun/Mon', 'Mon/Tue','Tue/Wed', 'Wed/Thur', 'Thur/Fri', 'Fri/Sat', 'Sat/Sun')
+row.names(tab) <- c('Sunday', 'Monday', 'Tuesday','Wednesda','Thursday','Friday','Saturday')
+tab
+```
+Using the variables from the lp model,  I inserted them into the schedule to find the optimal solution that minimizes the total wage expense. 
+
+```{r}
+rowSums(tab)
+```
+This table shows the  number of employees available each day using the shift schedule the has that minimizes the total wage expense. 
