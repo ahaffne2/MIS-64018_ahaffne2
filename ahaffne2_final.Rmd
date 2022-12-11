@@ -1,0 +1,28 @@
+---
+title: "ahaffne2_final"
+output: word_document
+date: '2022-12-11'
+---
+
+```{r}
+library(lpSolve)
+library(lpSolveAPI)
+
+
+x <- read.lp("/Users/alexhaffner/Desktop/Fall 2022/MIS 64018 Quanitative Management Modeling/ahaffne_final.lp")
+x
+
+```
+
+```{r}
+solve(x)
+```
+
+```{r}
+get.objective(x)
+```
+```{r}
+get.variables(x)
+```
+
+
